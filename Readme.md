@@ -1,15 +1,12 @@
 kiss-request
 ======
-A simple and stupid node request wrapper.
+A simple and stupid node request wrapper. KISS == Keep it simple and stupid.
+
+Inspired by [nokit.request](https://github.com/ysmood/nokit#requestopts) and [got](https://github.com/sindresorhus/got)
 
 [![NPM version](https://badge.fury.io/js/kiss-request.svg)](https://www.npmjs.com/package/kiss-request)
 [![Build Status](https://travis-ci.org/dracupid/kiss-request.svg)](https://travis-ci.org/dracupid/kiss-request)
 [![Build status](https://ci.appveyor.com/api/projects/status/github/dracupid/kiss-request?svg=true)](https://ci.appveyor.com/project/dracupid/kiss-request)
-
-## Installation
-```bash
-npm i kiss-request
-```
 
 ## Features
 - Simple, very simple.
@@ -31,6 +28,7 @@ request 'www.npmjs.com', (err, data) ->
     console.log data
 
 # Object url(same as http.request) & Promise API
+# Use your own Promise, I won't introduce any new Promise lib.
 request {host: 'www.npmjs.com', port: 80}, Promise
 .then (data) ->
     console.log data
