@@ -8,6 +8,13 @@ assign = (src, dest) ->
         src[k] = v
     src
 
+isPromise = (val) ->
+    return false if not val
+    if (val.constructor.name is 'promise') or ((typeof cb.resolve is 'function') and (typeof cb.reject is 'function'))
+        true
+    else
+        false
+
 kissRequest = (opts, cb) ->
     urlStr = ''
 
@@ -94,7 +101,7 @@ kissRequest = (opts, cb) ->
     req
 
 module.exports = (opts, cb) ->
-    if cb and  (cb.constructor.name is 'promise') or ((typeof cb.resolve is 'function') and (typeof cb.reject is 'function'))
+    if isPromise cb
         new cb (resolve, reject) ->
             kissRequest opts, (err, data) ->
                 if err then reject(err) else resolve(data)
