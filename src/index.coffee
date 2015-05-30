@@ -10,13 +10,21 @@ assign = (src, dest) ->
 
 isPromise = (val) ->
     return false if not val
-    if (val.constructor.name is 'promise') or ((typeof cb.resolve is 'function') and (typeof cb.reject is 'function'))
+    if (val.constructor.name is 'promise') or ((typeof val.resolve is 'function') and (typeof val.reject is 'function'))
         true
     else
         false
 
+once = (fun) ->
+    val = undefined
+    ->
+        if val then return val
+        else
+            val = fun.apply @, arguments
+
 kissRequest = (opts, cb) ->
     urlStr = ''
+    cb = once cb
 
     if typeof opts is 'string'
         urlStr = opts
@@ -99,6 +107,8 @@ kissRequest = (opts, cb) ->
             else
                 decode null, buf
         .on 'error', cb
+
+    req.on 'error', cb
 
     req.setTimeout timeout, ->
         err = new Error "Request #{url.format opts} timeout."
