@@ -26,6 +26,6 @@
     "coffee-script": "^1.9.3",
     "coffeelint": "^1.9.7",
     "dracupid-no": "git+https://github.com/dracupid/dracupid-no.git",
-    "nokit": "^0.7.6"
+    "nokit": "^0.7.7"
   }
 }
