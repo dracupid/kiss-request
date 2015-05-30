@@ -25,7 +25,9 @@ kissRequest = (opts, cb) ->
 
     if urlStr
         if urlStr.indexOf('.') < 0
-            return cb new Error "Unvalid url string #{opts}."
+            err = new TypeError "Unvalid url string #{opts}."
+            err.code = 'UNVALID URL'
+            return cb
         if urlStr.indexOf('http') < 0
             urlStr = 'http://' + urlStr
 
@@ -50,7 +52,9 @@ kissRequest = (opts, cb) ->
             when 'https:' then _require('https').request
 
     if not request
-        cb new Error "Protocol #{opts.protocol} is not supported."
+        err = new TypeError "Protocol #{opts.protocol} is not supported."
+        err.code = 'UNVALID PROTOCOL'
+        cb err
 
     req = request opts, (res) ->
         statusCode = res.statusCode
@@ -96,7 +100,11 @@ kissRequest = (opts, cb) ->
                 decode null, buf
         .on 'error', cb
 
-    req.setTimeout timeout, -> req.emit 'error', new Error 'timeout'
+    req.setTimeout timeout, ->
+        err = new Error "Request #{url.format opts} timeout."
+        err.code = "TIMEOUT"
+        req.emit 'error', err
+
     req.end()
     req
 
