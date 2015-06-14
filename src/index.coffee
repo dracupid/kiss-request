@@ -67,7 +67,7 @@ kissRequest = (opts, cb) ->
     req = request opts, (res) ->
         statusCode = res.statusCode
 
-        if (statusCode in [302, 301]) and res.headers.location and (opts.method is 'GET')
+        if res.headers.location and (opts.method is 'GET')
             delete opts.host
             delete opts.hostname
             delete opts.port
