@@ -24,7 +24,7 @@
   "homepage": "https://github.com/dracupid/kiss-request#readme",
   "devDependencies": {
     "coffee-script": "^1.9.3",
-    "coffeelint": "^1.9.7",
+    "coffeelint": "^1.10.1",
     "dracupid-no": "git+https://github.com/dracupid/dracupid-no.git",
     "nokit": "^0.7.7"
   }
