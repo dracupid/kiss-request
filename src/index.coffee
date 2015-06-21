@@ -1,8 +1,9 @@
+url = require 'url'
+
 _cache = {}
 _require = (name) ->
     _cache[name] ?= require name
 
-url = require 'url'
 assign = (src, dest) ->
     for k, v of dest
         src[k] = v
@@ -43,7 +44,7 @@ kissRequest = (opts, cb) ->
         if urlStr.indexOf('.') < 0
             err = new TypeError "Unvalid url string #{opts}."
             err.code = 'UNVALID URL'
-            return cb
+            return cb err
         if urlStr.indexOf('http') < 0
             urlStr = 'http://' + urlStr
 
@@ -62,6 +63,9 @@ kissRequest = (opts, cb) ->
     timeout = opts.timeout or 10000 # 10s
     delete opts.timeout
 
+    # fix protocol
+    if opts.protocol[opts.protocol.length - 1] isnt ':' then opts.protocol += ':'
+
     request =
         switch opts.protocol
             when 'http:' then _require('http').request
@@ -75,7 +79,7 @@ kissRequest = (opts, cb) ->
     req = request opts, (res) ->
         statusCode = res.statusCode
 
-        if res.headers.location and (opts.method is 'GET')
+        if (300 <= statusCode < 400) and res.headers.location and (opts.method is 'GET')
             delete opts.host
             delete opts.hostname
             delete opts.port
@@ -84,11 +88,18 @@ kissRequest = (opts, cb) ->
             opts.url = res.headers.location
             return module.exports opts, cb
 
+        if statusCode >= 400
+            err = new Error 'UNWANTED_STATUS_CODE'
+            err.code = 'UNWANTED_STATUS_CODE'
+            err.statusCode = statusCode
+            return cb err
+
         buf = new Buffer 0
         res.on 'data', (chunk) ->
             buf = Buffer.concat [buf, chunk]
         .on 'end', ->
             contentType = res.headers['content-type']
+
             encoding =
                 if typeof contentType is 'string'
                     match = contentType.match /charset=(.+);?/i
