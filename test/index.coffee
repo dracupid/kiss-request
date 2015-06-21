@@ -9,7 +9,7 @@ buildP = (url, id) ->
         assert content.indexOf(id) > 0
 
 describe "basic request with Promise", ->
-    request.Promise = Promise or require 'yaku'
+    request.Promise = require 'yaku'
 
     it "request with http", ->
         buildP 'http://www.baidu.com/', 'bdstatic'
@@ -38,7 +38,7 @@ describe "basic request with callback", ->
         build "www.baidu.com", 'bdstatic', done
 
 describe "request options", ->
-    request.Promise = Promise or require 'yaku'
+    request.Promise = require 'yaku'
 
     it "use object", ->
         request {host: "www.baidu.com", protocol: "http"}
@@ -50,7 +50,7 @@ describe "request options", ->
             assert content.indexOf('bdstatic') > 0
 
 describe "advanced requests", ->
-    request.Promise = Promise or require 'yaku'
+    request.Promise = require 'yaku'
 
     it "decode gb2312, handle gzip", ->
         buildP "http://www.qq.com/", '腾讯'
