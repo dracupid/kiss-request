@@ -147,7 +147,7 @@ getPromise = (maybes...) ->
 module.exports = (opts, cb) ->
     if typeof cb is 'function'
         kissRequest opts, cb
-    else if _Promise = getPromise cb, module.exports.Promise, Promise
+    else if _Promise = getPromise cb, module.exports.Promise, global.Promise
         new _Promise (resolve, reject) ->
             kissRequest opts, (err, data) ->
                 if err then reject(err) else resolve(data)
