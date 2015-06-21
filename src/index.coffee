@@ -126,9 +126,19 @@ kissRequest = (opts, cb) ->
     req.end()
     req
 
+
+getPromise = (maybes...) ->
+    for i in maybes
+        if isPromise i then return i
+
+    return null
+
 module.exports = (opts, cb) ->
-    if isPromise cb
-        new cb (resolve, reject) ->
+    if typeof cb is 'function'
+        kissRequest opts, cb
+    else if _Promise = getPromise cb, module.exports.Promise, Promise
+        new _Promise (resolve, reject) ->
             kissRequest opts, (err, data) ->
                 if err then reject(err) else resolve(data)
-    else kissRequest opts, cb
+
+module.exports.Promise = null
