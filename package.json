@@ -1,6 +1,6 @@
 {
   "name": "kiss-request",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A simple and stupid node request wrapper.",
   "main": "dist/index.js",
   "directories": {
@@ -18,7 +18,9 @@
   "bugs": {
     "url": "https://github.com/dracupid/kiss-request/issues"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "homepage": "https://github.com/dracupid/kiss-request#readme",
   "devDependencies": {
     "coffee-script": "^1.9.3",
