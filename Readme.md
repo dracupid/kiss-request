@@ -11,13 +11,14 @@ Inspired by [nokit.request](https://github.com/ysmood/nokit#requestopts) and [go
 ## Features
 - Simple, very simple.
 - Stupid, very stupid.
-- Following redirects, but without limitation.
-- Handling gzip&deflate
+- Small, very small.
+- Following redirections(3XX), but without a limitation.
+- Handling gzip & deflate
 - Timeout
 
 ## Warning
 - Use **GET** only.
-- **DO NOT** use this in a production environment. There are many better and more powerful choices, such as [got](https://github.com/sindresorhus/got), [request](https://github.com/mikeal/request).
+- There are many better and more powerful choices, such as [got](https://github.com/sindresorhus/got) and [request](https://github.com/mikeal/request).
 
 ## Usage
 ```coffee
@@ -28,17 +29,22 @@ request 'www.npmjs.com', (err, data) ->
     console.log data
 
 # Object url(same as http.request) & Promise API
-# Use your own Promise, I won't introduce any new Promise lib.
-request {host: 'www.npmjs.com', port: 80}, Promise
+request.Promise = require 'bluebird' # If a native Promise is available, you don't need to do this.
+request {host: 'www.npmjs.com', port: 80}
 .then (data) ->
     console.log data
+
+# The second way to use Promise API
+request 'http://www.npmjs.com', require 'bluebird'
+.then () ->
 
 # Set timeout (default 10000 ms)
 request {url: 'www.npmjs.com', timeout: 1000}, () ->
 ```
 
-## TODO
-- Add test
+## Notice
+- If you want to decode non-utf8 text, please install `iconv-lite` manually.
+- 4XX and 5XX are regarded as errors.
 
 ## License
 MIT@Jingchen Zhao
