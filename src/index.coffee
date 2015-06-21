@@ -42,7 +42,7 @@ kissRequest = (opts, cb) ->
 
     if urlStr
         if urlStr.indexOf('.') < 0
-            err = new TypeError "Unvalid url string #{opts}."
+            err = new TypeError "Unvalid url #{opts}."
             err.code = 'UNVALID URL'
             return cb err
         if urlStr.indexOf('http') < 0

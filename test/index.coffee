@@ -62,7 +62,8 @@ describe "advanced requests", ->
         request url
         .then (content) ->
             new Error ""
-        , (e) -> EQ e.code, errCode
+        .catch (e) ->
+            EQ e.code, errCode
 
     it "handle Error", ->
         buildError "zjcbsd.com", 'ENOTFOUND'
@@ -77,4 +78,4 @@ describe "advanced requests", ->
         buildError {host: "music.baidu.com/asa", protocol: "ftp:"}, 'UNVALID PROTOCOL'
 
     it "handle timeout", ->
-        buildError {url: "www.google.com", timeout: 100}, 'TIMEOUT'
+        buildError {url: "www.163.com", timeout: 100}, 'TIMEOUT'
