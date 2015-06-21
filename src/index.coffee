@@ -22,6 +22,14 @@ once = (fun) ->
         else
             val = fun.apply @, arguments
 
+decodeAll = (data, encoding) ->
+    try
+        _require 'iconv-lite'
+    catch
+        return data
+
+    _require('iconv-lite').decode data, encoding
+
 kissRequest = (opts, cb) ->
     urlStr = ''
     cb = once cb
@@ -98,7 +106,7 @@ kissRequest = (opts, cb) ->
                 else if not encoding
                     cb null, data
                 else if encoding isnt 'utf8'
-                    cb null, _require('iconv-lite').decode data, encoding
+                    cb null, decodeAll data, encoding
                 else
                     cb null, data.toString()
 

@@ -11,9 +11,6 @@
   },
   "author": "dracupid <dracupid@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-    "iconv-lite": "^0.4.10"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dracupid/kiss-request.git"
@@ -27,5 +24,6 @@
     "coffeelint": "^1.10.1",
     "dracupid-no": "git+https://github.com/dracupid/dracupid-no.git",
     "nokit": "^0.7.7"
+    "iconv-lite": "^0.4.10",
   }
 }
