@@ -18,6 +18,7 @@
   "bugs": {
     "url": "https://github.com/dracupid/kiss-request/issues"
   },
+  "files": ["dist"],
   "homepage": "https://github.com/dracupid/kiss-request#readme",
   "devDependencies": {
     "coffee-script": "^1.9.3",
