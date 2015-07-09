@@ -10,11 +10,7 @@ assign = (src, dest) ->
     src
 
 isPromise = (val) ->
-    return false if not val
-    if (val.constructor.name is 'promise') or ((typeof val.resolve is 'function') and (typeof val.reject is 'function'))
-        true
-    else
-        false
+    val and ((val.constructor.name is 'promise') or ((typeof val.resolve is 'function') and (typeof val.reject is 'function')))
 
 once = (fun) ->
     val = undefined
@@ -25,11 +21,11 @@ once = (fun) ->
 
 decodeAll = (data, encoding) ->
     try
-        _require 'iconv-lite'
+        decoder = _require 'iconv-lite'
     catch
         return data
 
-    _require('iconv-lite').decode data, encoding
+    decoder.decode data, encoding
 
 kissRequest = (opts, cb) ->
     urlStr = ''
