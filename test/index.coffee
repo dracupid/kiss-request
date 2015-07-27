@@ -66,7 +66,7 @@ describe "advanced requests", ->
             EQ e.code, errCode
 
     it "handle Error", ->
-        buildError "zjcbsd.com", 'ENOTFOUND'
+        buildError "zjcbsddsfj.com", 'ENOTFOUND'
 
     it "handle HTTP 4XX", ->
         buildError "music.baidu.com/asa", 'UNWANTED_STATUS_CODE'
