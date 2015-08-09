@@ -9,8 +9,7 @@ assign = (src, dest) ->
         src[k] = v
     src
 
-isPromise = (val) ->
-    val and ((val.constructor.name is 'promise') or ((typeof val.resolve is 'function') and (typeof val.reject is 'function')))
+{isConstructor: isPromise} = require 'ispromise'
 
 once = (fun) ->
     val = undefined
