@@ -56,7 +56,7 @@ describe "advanced requests", ->
         buildP "http://www.qq.com/", '腾讯'
 
     it "handle redirect", ->
-        buildP "iojs.org", 'Webmaster'
+        buildP "www.baidu.cn", '百度'
 
     buildError = (url, errCode) ->
         request url
