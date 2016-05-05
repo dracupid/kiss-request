@@ -1,5 +1,3 @@
-# http://www.appveyor.com/docs/appveyor-yml
-
 #---------------------------------#
 #      general configuration      #
 #---------------------------------#
@@ -21,14 +19,9 @@ clone_depth: 1
 environment:
   matrix:
     - nodejs_version: 0.10
-    - nodejs_version: 2
-
-cache:
-  - node_modules                    # local npm modules
-  - '%APPDATA%\npm-cache'           # npm cache
+    - nodejs_version: 6
 
 install:
-  - ps: Install-Product node $env:nodejs_version
   - npm install
 
 #---------------------------------#
