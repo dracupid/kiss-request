@@ -7,8 +7,9 @@
     "test": "test"
   },
   "scripts": {
-    "test": "no test",
-    "prepublish": "no"
+    "test": "mocha -r 'coffee-script/register' test/index.coffee -t 1000",
+    "prepublish": "npm run build",
+    "build": "coffeelint src/index.coffee -f coffeelint-strict.json && coffee -o dist -b -c src/index.coffee"
   },
   "author": "dracupid <dracupid@gmail.com>",
   "license": "MIT",
@@ -25,12 +26,10 @@
   "homepage": "https://github.com/dracupid/kiss-request#readme",
   "devDependencies": {
     "coffee-script": "^1.10.0",
-    "coffeelint": "^1.13.1",
-    "dracupid-no": "git+https://github.com/dracupid/dracupid-no.git",
+    "coffeelint": "^1.15.7",
     "iconv-lite": "^0.4.13",
-    "mocha": "^2.3.3",
-    "nokit": "^0.15.0",
-    "yaku": "^0.11.4"
+    "mocha": "^2.4.5",
+    "yaku": "^0.15.9"
   },
   "dependencies": {
     "ispromise": "^1.0.0"

@@ -11,12 +11,14 @@ assign = (src, dest) ->
 
 {isConstructor: isPromise} = require 'ispromise'
 
+# coffeelint: disable=missing_fat_arrows
 once = (fun) ->
     val = undefined
     ->
         if val then return val
         else
             val = fun.apply @, arguments
+# coffeelint: enablemissing_fat_arrows
 
 decodeAll = (data, encoding) ->
     try
