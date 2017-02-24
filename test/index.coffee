@@ -1,4 +1,4 @@
-request = require '../src'
+request = require '../'
 assert = require 'assert'
 
 EQ = assert.strictEqual
@@ -60,7 +60,7 @@ describe "advanced requests", ->
 
     buildError = (url, errCode) ->
         request url
-        .then (content) ->
+        .then () ->
             new Error ""
         .catch (e) ->
             EQ e.code, errCode
@@ -69,7 +69,7 @@ describe "advanced requests", ->
         buildError "zjcbsddsfj.com", 'ENOTFOUND'
 
     it "handle HTTP 4XX", ->
-        buildError "music.baidu.com/asa", 'UNWANTED_STATUS_CODE'
+        buildError "www.cnbeta.com/213", 'UNWANTED_STATUS_CODE'
 
     it "handle unvalid url", ->
         buildError "musi/asa", 'UNVALID URL'
