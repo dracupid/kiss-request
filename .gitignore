@@ -23,3 +23,5 @@ temp
 *.temp
 dist
 
+
+index.js

@@ -2,7 +2,7 @@
   "name": "kiss-request",
   "version": "0.1.0",
   "description": "A simple and stupid node request wrapper.",
-  "main": "dist/index.js",
+  "main": "index.js",
   "directories": {
     "test": "test"
   },
