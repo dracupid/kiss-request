@@ -7,10 +7,15 @@
     "test": "test"
   },
   "babel": {
-    "presets": ["latest"]
+    "presets": [
+      "latest"
+    ]
   },
   "standard": {
-    "globals": ["it", "describe"]
+    "globals": [
+      "it",
+      "describe"
+    ]
   },
   "scripts": {
     "test": "mocha -r babel-register test/index.es6 -t 6000",
@@ -30,19 +35,17 @@
     "url": "https://github.com/dracupid/kiss-request/issues"
   },
   "files": [
-    "dist"
+    "index.js"
   ],
   "homepage": "https://github.com/dracupid/kiss-request#readme",
   "devDependencies": {
     "babel-cli": "^6.23.0",
     "babel-preset-latest": "^6.22.0",
     "babel-register": "^6.23.0",
-    "coffee-script": "^1.10.0",
-    "coffeelint": "^1.15.7",
-    "iconv-lite": "^0.4.13",
-    "mocha": "^2.4.5",
+    "iconv-lite": "^0.4.15",
+    "mocha": "^3.2.0",
     "standard": "^8.6.0",
-    "yaku": "^0.15.9"
+    "yaku": "^0.17.8"
   },
   "dependencies": {
     "ispromise": "^1.0.0"
