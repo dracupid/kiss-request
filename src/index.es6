@@ -123,7 +123,8 @@ let kissRequest = function (opts, cb) {
           else return cb(null, data.toString())
         }
 
-        if (['gzip', 'deflate'].includes(res.headers['content-encoding'])) return _require('zlib').gunzip(buf, decode)
+        let contentEncoding = res.headers['content-encoding']
+        if (contentEncoding === 'gzip' || contentEncoding === 'deflate') return _require('zlib').gunzip(buf, decode)
         else return decode(null, buf)
       }).on('error', cb)
   })

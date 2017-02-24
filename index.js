@@ -136,7 +136,8 @@ var kissRequest = function kissRequest(opts, cb) {
         if (err) return cb(err);else if (!encoding) return cb(null, data);else if (encoding !== 'utf8') return cb(null, decodeAll(data, encoding));else return cb(null, data.toString());
       };
 
-      if (['gzip', 'deflate'].includes(res.headers['content-encoding'])) return _require('zlib').gunzip(buf, decode);else return decode(null, buf);
+      var contentEncoding = res.headers['content-encoding'];
+      if (contentEncoding === 'gzip' || contentEncoding === 'deflate') return _require('zlib').gunzip(buf, decode);else return decode(null, buf);
     }).on('error', cb);
   });
 
