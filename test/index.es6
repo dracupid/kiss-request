@@ -43,7 +43,7 @@ describe('advanced requests', function () {
   request.Promise = require('yaku')
 
   it('decode gb2312, handle gzip', () => buildP('http://www.qq.com/', '腾讯'))
-  it('handle redirect', () => buildP('www.baidu.cn', '百度'))
+  it('handle redirect', () => buildP('qq.com', '腾讯'))
 
   let buildError = (url, errCode) =>
     request(url)
