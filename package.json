@@ -48,6 +48,7 @@
     "yaku": "^0.18.0"
   },
   "dependencies": {
-    "ispromise": "^1.1.0"
+    "ispromise": "^1.1.0",
+    "safe-buffer": "^5.0.1"
   }
 }

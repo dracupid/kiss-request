@@ -15,6 +15,8 @@ var _ispromise = require('ispromise');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var Buffer = require('safe-buffer').Buffer;
+
 var _cache = {};
 var _require = function _require(name) {
   return _cache[name] != null ? _cache[name] : _cache[name] = require(name);
@@ -114,7 +116,7 @@ var kissRequest = function kissRequest(opts, cb) {
       return cb(err);
     }
 
-    var buf = new Buffer(0);
+    var buf = Buffer.alloc(0);
     return res.on('data', function (chunk) {
       buf = Buffer.concat([buf, chunk]);
       return buf;

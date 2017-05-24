@@ -1,5 +1,6 @@
 import url from 'url'
 import {isConstructor as isPromise} from 'ispromise'
+let Buffer = require('safe-buffer').Buffer
 
 let _cache = {}
 let _require = name => _cache[name] != null ? _cache[name] : (_cache[name] = require(name))
@@ -98,7 +99,7 @@ let kissRequest = function (opts, cb) {
       return cb(err)
     }
 
-    let buf = new Buffer(0)
+    let buf = Buffer.alloc(0)
     return res.on('data', chunk => {
       buf = Buffer.concat([buf, chunk])
       return buf
